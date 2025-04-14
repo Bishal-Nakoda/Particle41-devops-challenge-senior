@@ -28,7 +28,7 @@ This project demonstrates a minimal Flask API that returns the **current timesta
 
 ## 🐳 To containerize the source code, run the below commands:
 ```bash
-docker build -t flask-ip-api .
+docker build -t flask-ip-api app/.
 docker run -p 8080:8080 flask-ip-api
 curl http://localhost:8080
 ```
