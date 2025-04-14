@@ -24,7 +24,7 @@ variable "docker_image" {
   type        = string
 }
 
-variable "domains" {
+variable "domain" {
   description = "Domain you want"
   type        = string
 }

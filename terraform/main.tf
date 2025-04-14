@@ -106,7 +106,7 @@ resource "google_compute_managed_ssl_certificate" "ssl_cert" {
   name = "lb-cert"
 
   managed {
-    domains = [var.domains]
+    domains = [var.domain]
   }
 }
 
