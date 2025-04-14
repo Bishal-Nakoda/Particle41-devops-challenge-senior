@@ -1,20 +1,23 @@
+# local variables for subnet cidr ranges
 locals {
   public_subnet_cidrs  = ["10.0.1.0/24", "10.0.2.0/24"]
   private_subnet_cidrs = ["10.0.3.0/24", "10.0.4.0/24"]
 }
 
+# Enabling the APIs
 resource "google_project_service" "gcp_services" {
   for_each = toset(var.gcp_service_list)
   project  = var.project_id
   service  = each.key
 }
 
+# Creating custom vpc
 resource "google_compute_network" "vpc_network" {
   name                    = "custom-vpc"
   auto_create_subnetworks = false
 }
 
-# Create Public Subnets using count
+# Create Public Subnets
 resource "google_compute_subnetwork" "public_subnet" {
   count                    = length(local.public_subnet_cidrs)
   name                     = "public-subnet-${count.index + 1}"
@@ -26,7 +29,7 @@ resource "google_compute_subnetwork" "public_subnet" {
   # Public subnets do not need NAT, but you may want to set up firewall rules separately
 }
 
-# Create Private Subnets using count
+# Create Private Subnets 
 resource "google_compute_subnetwork" "private_subnet" {
   count                    = length(local.private_subnet_cidrs)
   name                     = "private-subnet-${count.index + 1}"
@@ -45,6 +48,7 @@ resource "google_compute_router" "router" {
   region  = "us-central1"
 }
 
+# Creating a router for private subnets to access the internet
 resource "google_compute_router_nat" "router_nat" {
   name                               = "router-nat"
   router                             = google_compute_router.router.name
@@ -58,7 +62,7 @@ resource "google_compute_router_nat" "router_nat" {
   }
 }
 
-
+# As cloud run is managed service, creating vpc connector to connect with it
 resource "google_vpc_access_connector" "vpc_connector" {
   name          = "serverless-conn"
   machine_type  = "f1-micro"
@@ -67,6 +71,7 @@ resource "google_vpc_access_connector" "vpc_connector" {
   ip_cidr_range = "10.8.0.0/28"
 }
 
+# Serverless Cloud run
 resource "google_cloud_run_service" "flask_service" {
   name     = "flask-ip-api"
   location = var.region
@@ -91,6 +96,7 @@ resource "google_cloud_run_service" "flask_service" {
   }
 }
 
+# Making it Public 
 resource "google_cloud_run_service_iam_member" "allow_all" {
   location = google_cloud_run_service.flask_service.location
   service  = google_cloud_run_service.flask_service.name
@@ -98,6 +104,7 @@ resource "google_cloud_run_service_iam_member" "allow_all" {
   member   = "allUsers"
 }
 
+# BElow is all data and resource block is for creating Load balancer
 data "google_compute_global_address" "default" {
   name = var.ip
 }

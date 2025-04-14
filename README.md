@@ -42,20 +42,25 @@ curl http://localhost:8080
 - Serverless VPC Admin
 - Storage Admin
 
-2. Create a multi-regional bucket to store the state files. 
+2. Provision an External Global IP
 
-3. Now, in main.auto.tfvars put the values of the environment variables:
+3. Create a multi-regional bucket to store the state files. 
+
+4. Now, in main.auto.tfvars put the values of the environment variables:
 - Bucket name created in the above step (It will store the .tfstate files in remote backend)
 - Project ID
 - domain to be added
-- ip mapped to the domain
+- ip name mapped to the domain
 
-4. Once added make sure gcloud is installed in your system to run the below command:
+5. Once added make sure gcloud is installed in your system to run the below command:
 ```bash
 gcloud auth application-default login
 ```
-5. Run the below command in sequence:
+6. Run the below command in sequence:
 ```bash 
 terraform init
 terraform apply
 ```
+
+## After everything is done, you can use your domain to access the cloud run.
+Note: For testing purpose, I have use nip.io domains for e.g. 31.31.31.31.nip.io
