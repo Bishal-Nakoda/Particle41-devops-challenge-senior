@@ -2,7 +2,7 @@
 
 # 🌐 Flask IP Timestamp API - Cloud Run Deployment
 
-This project demonstrates a minimal Flask API that returns the **current timestamp** and the **IP address** of the visitor. The application is Dockerized and deployed to **Google Cloud Run** using **Terraform** and **GitLab CI/CD**.
+This project demonstrates a minimal Flask API that returns the **current timestamp** and the **IP address** of the visitor. The application is Dockerized and deployed to **Google Cloud Run** using **Terraform**.
 
 ---
 
@@ -11,7 +11,6 @@ This project demonstrates a minimal Flask API that returns the **current timesta
 - ✅ Returns timestamp and visitor IP in JSON
 - 🐳 Dockerized application (small, secure image)
 - 🚀 Deployed on Google Cloud Run via Terraform
-- 🔁 Fully automated with GitLab CI/CD
 - 🛡️ Runs as a non-root user inside the container
 
 ---
