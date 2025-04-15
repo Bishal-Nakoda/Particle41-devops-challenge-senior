@@ -49,8 +49,8 @@ curl http://localhost:8080
 4. Now, in main.auto.tfvars put the values of the environment variables:
 - Bucket name created in the above step (It will store the .tfstate files in remote backend)
 - Project ID
-- domain to be added
-- ip name mapped to the domain
+- ip name mapped to the domain (External IP which is reserved earlier)
+- domain to be added (For testing, I am using nip.io domain. It is generally in the format of External_IP.nip.io e.g. 32.45.67.89.nip.io. Mske sure the External_IP is the IP which we have reserved earlier)
 
 5. Once added make sure gcloud is installed in your system to run the below command:
 ```bash
@@ -63,4 +63,4 @@ terraform apply
 ```
 
 ## After everything is done, you can use your domain to access the cloud run.
-Note: For testing purpose, I have use nip.io domains for e.g. 31.31.31.31.nip.io
+Note: For testing purpose, I have use nip.io domains for e.g. 32.45.67.89.nip.io
