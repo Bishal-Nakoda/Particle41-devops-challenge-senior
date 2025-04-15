@@ -49,7 +49,7 @@ curl http://localhost:8080
 - Bucket name created in the above step (It will store the .tfstate files in remote backend)
 - Project ID
 - ip name mapped to the domain (External IP which is reserved earlier)
-- domain to be added (For testing, I am using nip.io domain. It is generally in the format of External_IP.nip.io e.g. 32.45.67.89.nip.io. Mske sure the External_IP is the IP which we have reserved earlier)
+- domain to be added (For testing, I am using nip.io domain. It is generally in the format of External_IP.nip.io e.g. 32.45.67.89.nip.io. Make sure the External_IP is the IP which we have reserved earlier)
 
 5. Once added make sure gcloud is installed in your system to run the below command:
 ```bash
