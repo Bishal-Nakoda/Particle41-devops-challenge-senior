@@ -35,7 +35,7 @@ curl http://localhost:8080
 ---
 ## To deploy the architecture using terraform, we need to follow certain prerequisites:
 1. One should have the below permissions:
-- Owner (To enable the APIs)
+- Service Usage Admin or Editor or Owner (To enable the APIs)
 - Cloud Run Admin
 - Compute Admin
 - Serverless VPC Admin
