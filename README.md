@@ -55,6 +55,11 @@ curl http://localhost:8080
 ```bash
 gcloud auth application-default login
 ```
+If project is not set use the below command:
+```bash
+gcloud config set project PROJECT_ID
+```
+
 6. Run the below command in sequence:
 ```bash 
 terraform init
